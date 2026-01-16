@@ -338,7 +338,7 @@ class XmlGenerator
             $data = $this->getBooleanAsString($data);
 
             $node->appendChild(
-                $this->getDomDocument()->createTextNode($data)
+                $this->getDomDocument()->createTextNode((string) $data)
             );
         }
 
@@ -405,7 +405,7 @@ class XmlGenerator
         }
         else
         {
-            $node->appendChild($this->getDomDocument()->createTextNode($data['@value']));
+            $node->appendChild($this->getDomDocument()->createTextNode((string) $data['@value']));
         }
 
         unset($data['@value']);
@@ -499,7 +499,7 @@ class XmlGenerator
      */
     protected function prepareElementName(&$elementName)
     {
-        $tempElementName = explode('_', $elementName);
+        $tempElementName = explode('_',(string) $elementName);
         $elementName = isset($tempElementName[0]) && is_numeric($tempElementName[0])
             ? $tempElementName[1]
             : $elementName;
